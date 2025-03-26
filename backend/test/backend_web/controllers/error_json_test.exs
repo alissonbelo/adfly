@@ -1,4 +1,7 @@
 defmodule BackendWeb.ErrorJSONTest do
+  @moduledoc """
+  Testes para o módulo BackendWeb.ErrorJSON que lida com a renderização de erros em formato JSON.
+  """
   use BackendWeb.ConnCase, async: true
 
   alias BackendWeb.ErrorJSON
