@@ -5,6 +5,9 @@ defmodule BackendWeb.ConnCase do
   """
   use ExUnit.CaseTemplate
 
+  alias Backend.DataCase
+  alias Phoenix.ConnTest
+
   using do
     quote do
       # The default endpoint for testing
