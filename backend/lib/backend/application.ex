@@ -5,10 +5,12 @@ defmodule Backend.Application do
 
   use Application
 
+  alias BackendWeb.{Endpoint, Telemetry}
+
   @impl true
   def start(_type, _args) do
     children = [
-      BackendWeb.Telemetry,
+      Telemetry,
       Backend.Repo,
       {DNSCluster, query: Application.get_env(:backend, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Backend.PubSub},
@@ -17,7 +19,7 @@ defmodule Backend.Application do
       # Start a worker by calling: Backend.Worker.start_link(arg)
       # {Backend.Worker, arg},
       # Start to serve requests, typically the last entry
-      BackendWeb.Endpoint
+      Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -30,7 +32,7 @@ defmodule Backend.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    BackendWeb.Endpoint.config_change(changed, removed)
+    Endpoint.config_change(changed, removed)
     :ok
   end
 end
